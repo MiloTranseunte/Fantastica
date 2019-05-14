@@ -35,5 +35,5 @@ func _on_Bullet_enemy_body_entered(body):
 	if "RockyTile" or "Player" in body.name:
 		queue_free()
 
-	#if "Enemy" in body.name:
-	#	body.dead()
+#	if "EvilClone" in body.name:
+#		body.dead()

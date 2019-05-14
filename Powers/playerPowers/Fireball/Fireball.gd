@@ -25,11 +25,14 @@ func _physics_process(delta):
 	translate(velocity)
 
 
+# la sintáxis de call_deferred te salva del error: 
+#"can't change this state while flushing queries"
+# y hace funcionar mejor las colisiones
 
 
 func _on_Bullet_body_entered(body):
-	if "RockyTile" or "Enemy" in body.name:
+	if "RockyTile" or "EvilClone" in body.name:
 		print(body.name)
 		queue_free()
-		if "Enemy" in body.name:
-			body.dead()
+		if "EvilClone" in body.name:
+			body.call_deferred("dead")

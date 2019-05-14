@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemyBullet.png-96030847af95e672bcfa42f0bd4f5d79.stex"
+path="res://.import/enemyFireball.png-9093a82468d1232b351fa4732e475300.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Powers/enemyPowers/Fireball/enemyBullet.png"
-dest_files=[ "res://.import/enemyBullet.png-96030847af95e672bcfa42f0bd4f5d79.stex" ]
+source_file="res://Powers/enemyPowers/Fireball/enemyFireball.png"
+dest_files=[ "res://.import/enemyFireball.png-9093a82468d1232b351fa4732e475300.stex" ]
 
 [params]
 

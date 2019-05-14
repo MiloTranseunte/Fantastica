@@ -27,6 +27,15 @@ reset_world={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Enviroment"
+2d_physics/layer_4="Projectile"
+2d_physics/layer_5="Items"
+2d_physics/layer_6="EnemyProjectiles"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

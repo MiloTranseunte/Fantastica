@@ -5,27 +5,27 @@ const GRAVITY = 20
 const MAX_SPEED_FALL = 1000
 
 const ACCELERATION = 10
-const MAX_SPEED = 200
+const MAX_SPEED = 220
 
 var is_dead = false
 
 var motion = Vector2()
 var direction = 1
 
-var timer = null
-var bullet_delay = 2
 var can_shoot = true
 
-const BULLET = preload("res://Powers/enemyPowers/Fireball/Bullet_enemy.tscn")
+const BULLET = preload("res://Powers/enemyPowers/Fireball/enemyFireball.tscn")
 
 func dead():
 	is_dead = true
 	motion = Vector2(0,0)
 	$Sprite.play("idle")
+	$entityCollision.disabled = true
+	$areaDetection/detectionShape.disabled = true
 	$Timer.start()
 	
 	
-func shoot():
+func shootTrigered():
 	
 	if is_dead == false && can_shoot == true:
 		print("enemy is shooting")
@@ -41,17 +41,14 @@ func shoot():
 		
 		get_parent().add_child(bullet)
 		bullet.position = bullet_pos
+		
+		can_shoot = false
+		$shootingDelay.start()
 	
 func _ready():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(bullet_delay)
-	timer.connect("timeout", self, "on_timeout_complete")
-	add_child(timer)
-	
-func on_timeout_complete():
-	can_shoot = true
+	pass
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	
 	if is_dead == false:
@@ -97,3 +94,7 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	queue_free()
+
+func _on_shootingDelay_timeout():
+	can_shoot = true
+	pass
