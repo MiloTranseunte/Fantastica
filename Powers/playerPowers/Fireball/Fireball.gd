@@ -6,6 +6,8 @@ const SPEED = 750
 var velocity = Vector2()
 var direction = 1
 
+var hitPoint = 50
+
 func set_bullet_direction(dir):
 	direction = dir
 
@@ -35,4 +37,4 @@ func _on_Bullet_body_entered(body):
 		print(body.name)
 		queue_free()
 		if "EvilClone" in body.name:
-			body.call_deferred("dead")
+			body.call_deferred("takeDamage", hitPoint)

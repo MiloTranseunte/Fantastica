@@ -16,6 +16,10 @@ var can_shoot = true
 
 const BULLET = preload("res://Powers/enemyPowers/Fireball/enemyFireball.tscn")
 
+func takeDamage(hitPoint):
+	
+	return 
+
 func dead():
 	is_dead = true
 	motion = Vector2(0,0)

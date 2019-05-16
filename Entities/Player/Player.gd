@@ -61,7 +61,16 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("reset_world"):
 		get_tree().change_scene(Next_World)
-		
+	
+	"""
+	Just for experimental use only
+	"""
+	if Input.is_action_just_pressed("takeDamage"):
+		var hit = 25
+		var showHealth
+		showHealth = $health._damage(hit)
+		print(showHealth)
+	
 	$Label.text = 'veloctiyY: ' + str(motion.y)+ ' ' + 'VelocityX: ' + str(motion.x)
 	
 	motion = move_and_slide(motion, UP)

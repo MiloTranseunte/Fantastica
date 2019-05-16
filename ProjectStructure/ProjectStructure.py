@@ -78,3 +78,12 @@ CARPETA WORLDS():
 			SUBCARPETA TokenNextWorld(Token_nextWorld): # Area2D, token to nextWorld
 				TokenNextWorld.tscn
 				TokenNextWorld.gd:
+				
+CARPETA HUD():
+	SUBCARPETA Player_Interface():
+		
+	SUBCARPETA Main_Menu():
+	
+	SUBCARPETA Pause_Menu():
+	
+	SUBCARPETA Contextual_Menu():
