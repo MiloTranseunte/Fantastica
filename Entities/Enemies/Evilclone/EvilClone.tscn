@@ -36,9 +36,6 @@ height = 550.0
 collision_layer = 2
 collision_mask = 15
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 0.294118, 0, 1 )
@@ -69,5 +66,11 @@ wait_time = 0.5
 [node name="health" type="Node" parent="."]
 script = ExtResource( 10 )
 
+[node name="Label" type="Label" parent="."]
+margin_left = -33.2819
+margin_top = -47.7245
+margin_right = 34.7181
+margin_bottom = -33.7245
+align = 1
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="shootingDelay" to="." method="_on_shootingDelay_timeout"]

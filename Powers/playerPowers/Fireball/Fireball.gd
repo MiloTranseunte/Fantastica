@@ -33,8 +33,5 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
-	if "RockyTile" or "EvilClone" in body.name:
-		print(body.name)
+		body.call_deferred("takeDamage", hitPoint)
 		queue_free()
-		if "EvilClone" in body.name:
-			body.call_deferred("takeDamage", hitPoint)

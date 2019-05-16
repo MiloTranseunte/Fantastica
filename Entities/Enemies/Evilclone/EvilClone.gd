@@ -12,13 +12,15 @@ var is_dead = false
 var motion = Vector2()
 var direction = 1
 
-var can_shoot = true
+var health = 100
 
+var can_shoot = true
 const BULLET = preload("res://Powers/enemyPowers/Fireball/enemyFireball.tscn")
 
 func takeDamage(hitPoint):
-	
-	return 
+	health = health - hitPoint
+	if health <= 0:
+		dead()
 
 func dead():
 	is_dead = true
@@ -54,6 +56,8 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	
+	$Label.text = str(health)
 	
 	if is_dead == false:
 		motion.y += min(GRAVITY, MAX_SPEED_FALL) # Always falling
