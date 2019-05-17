@@ -1,19 +1,21 @@
 extends KinematicBody2D
 
+# Gravity and motion Constants
 const UP = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_SPEED_FALL = 1000
-
 const ACCELERATION = 10
 const MAX_SPEED = 220
 
-var is_dead = false
-
+# Motion Variables
 var motion = Vector2()
 var direction = 1
 
-var health = 100
+# Survival variables
+var health = 25
+var is_dead = false
 
+# Shooting Variables
 var can_shoot = true
 const BULLET = preload("res://Powers/enemyPowers/Fireball/enemyFireball.tscn")
 
@@ -24,18 +26,19 @@ func takeDamage(hitPoint):
 
 func dead():
 	is_dead = true
-	motion = Vector2(0,0)
+	motion = Vector2(0,0) 
 	$Sprite.play("idle")
 	$entityCollision.disabled = true
 	$areaDetection/detectionShape.disabled = true
 	$Timer.start()
 	
+func touchDamage():
+	pass
 	
 func shootTrigered():
-	
 	if is_dead == false && can_shoot == true:
-		print("enemy is shooting")
-	
+		can_shoot = false
+		
 		var bullet_pos = $Position2D.global_position
 		var bullet = BULLET.instance()
 		# SET DIRECTION
@@ -48,7 +51,6 @@ func shootTrigered():
 		get_parent().add_child(bullet)
 		bullet.position = bullet_pos
 		
-		can_shoot = false
 		$shootingDelay.start()
 	
 func _ready():
@@ -58,11 +60,10 @@ func _ready():
 func _physics_process(delta):
 	
 	$Label.text = str(health)
+	motion.y += min(GRAVITY, MAX_SPEED_FALL) # Always falling
+	motion.x = lerp(motion.x, 0, .1)
 	
 	if is_dead == false:
-		motion.y += min(GRAVITY, MAX_SPEED_FALL) # Always falling
-		
-		motion.x = lerp(motion.x, 0, .1)
 		
 		if direction == 1: #RIGHT
 			motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
@@ -83,10 +84,10 @@ func _physics_process(delta):
 		if !is_on_floor():
 			motion.y = lerp(motion.y, MAX_SPEED_FALL, .01)
 			
-		motion = move_and_slide(motion, UP)
+	motion = move_and_slide(motion, UP)
 		
-		if is_on_wall():
-			direction *= -1
+	if is_on_wall():
+		direction *= -1
 
 #func _on_Area2D_body_entered(body):
 #	if "Player" in body.name:
@@ -106,3 +107,8 @@ func _on_Timer_timeout():
 func _on_shootingDelay_timeout():
 	can_shoot = true
 	pass
+
+
+func _on_touchingArea_body_entered(body):
+	if body.name == "Player":
+	 body.takeDamage(10)

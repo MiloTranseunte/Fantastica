@@ -18,6 +18,7 @@ var can_shoot = true
 var is_dead = false
 
 func takeDamage(hitPoint):
+	#$Sprite.Modulate(255,0,0)
 	var remained_health = $health._damage(hitPoint)
 	if remained_health <= 0:
 		_dead()
@@ -28,7 +29,8 @@ func _dead():
 	motion = Vector2(0,0)
 	$Sprite.play("idle")
 	$entityCollision.disabled = true
-
+	queue_free()
+	get_tree().change_scene(Next_World)
 func _physics_process(delta):
 	
 	$Label.text = str($health.health)
