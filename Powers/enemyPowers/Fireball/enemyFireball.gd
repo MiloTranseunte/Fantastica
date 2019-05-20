@@ -16,6 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.x = SPEED * delta * direction
+	$Sprite.play("fireball")
 
 	if direction == 1:
 		$Sprite.flip_h = false

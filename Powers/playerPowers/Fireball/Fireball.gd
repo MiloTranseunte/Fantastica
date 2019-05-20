@@ -2,7 +2,7 @@ extends Area2D
 
 #Bullet of the Player
 
-const SPEED = 750
+const SPEED = 550
 var velocity = Vector2()
 var direction = 1
 
@@ -18,6 +18,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.x = SPEED * delta * direction
+	$Sprite.play("fireball")
 	
 	if direction == 1:
 		$Sprite.flip_h = false

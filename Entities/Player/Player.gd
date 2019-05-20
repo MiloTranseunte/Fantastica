@@ -43,13 +43,13 @@ func _physics_process(delta):
 	
 	
 	if is_dead == false:
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("goRight"):
 			motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
 			$Sprite.flip_h = false
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == -1:
 				$Position2D.position.x *= -1
-		elif Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("goLeft"):
 			motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
 			$Sprite.flip_h = true
 			$Sprite.play("Run")
@@ -60,7 +60,7 @@ func _physics_process(delta):
 			air_friction = true
 		
 		if is_on_floor():
-			if Input.is_action_pressed("ui_up"):
+			if Input.is_action_pressed("Jump"):
 				motion.y = JUMP_HEIGHT
 			if air_friction == true:
 				motion.x = lerp(motion.x, 0, .2)
@@ -74,7 +74,7 @@ func _physics_process(delta):
 			if air_friction == true:
 				motion.x = lerp(motion.x, 0, .2)
 				
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_pressed("shoot"):
 			var bullet = BULLET.instance()
 			shoot(bullet, bullet_pos)
 			

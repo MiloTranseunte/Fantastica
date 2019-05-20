@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Entities/Enemies/Evilclone/EvilClone.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Player/PlayerSprites/Idle0.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Entities/Player/PlayerSprites/Run7.png" type="Texture" id=8]
 [ext_resource path="res://Entities/Enemies/Evilclone/areaDetection.gd" type="Script" id=9]
 [ext_resource path="res://Entities/Enemies/Evilclone/health.gd" type="Script" id=10]
+[ext_resource path="res://Entities/Enemies/Evilclone/touchingArea.gd" type="Script" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -77,6 +78,7 @@ margin_bottom = -33.7245
 align = 1
 
 [node name="touchingArea" type="Area2D" parent="."]
+script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="touchingArea"]
 position = Vector2( 0, 4 )
@@ -84,4 +86,3 @@ shape = SubResource( 4 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="shootingDelay" to="." method="_on_shootingDelay_timeout"]
-[connection signal="body_entered" from="touchingArea" to="." method="_on_touchingArea_body_entered"]
