@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://WorldsScenes/1_RockyWorld/Autotile/DirtAutoTile.png" type="Texture" id=1]
-
-
+[ext_resource path="res://WorldsScenes/0_RockyWorld/Autotile/DirtAutoTile.png" type="Texture" id=1]
 
 [node name="DirtAutoTile" type="Node2D"]
 
@@ -10,3 +8,4 @@
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
+

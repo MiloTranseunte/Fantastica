@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DirtAutoTile.png-ed1a8f785cb5dff680347d36c38575b8.stex"
+path="res://.import/JungleDirtTileSet.png-0fb5f79f57a404e16b2cb74ed62c79b2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WorldsScenes/1_RockyWorld/Autotile/DirtAutoTile.png"
-dest_files=[ "res://.import/DirtAutoTile.png-ed1a8f785cb5dff680347d36c38575b8.stex" ]
+source_file="res://WorldsScenes/1_JungleWorld/Tiles/JungleDirtTileSet.png"
+dest_files=[ "res://.import/JungleDirtTileSet.png-0fb5f79f57a404e16b2cb74ed62c79b2.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-60b5c308d235eb3e2b7762b0a0360c12.stex"
+path="res://.import/DirtAutoTile.png-ebb3c0989308f661cda620a0a626d3dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WorldsScenes/1_RockyWorld/tokenNextWorld/icon.png"
-dest_files=[ "res://.import/icon.png-60b5c308d235eb3e2b7762b0a0360c12.stex" ]
+source_file="res://WorldsScenes/0_RockyWorld/Autotile/DirtAutoTile.png"
+dest_files=[ "res://.import/DirtAutoTile.png-ebb3c0989308f661cda620a0a626d3dc.stex" ]
 
 [params]
 
