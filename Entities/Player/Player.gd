@@ -4,7 +4,7 @@ const UP = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_SPEED_FALL = 1000
 const ACCELERATION = 75
-const MAX_SPEED = 220 #200
+const MAX_SPEED = 220 #220
 const JUMP_HEIGHT = -550
 
 const BULLET = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")

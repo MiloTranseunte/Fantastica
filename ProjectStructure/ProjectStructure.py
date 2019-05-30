@@ -21,8 +21,7 @@ NODO_GODOT Universo():
 		Item_x.tscn					# Escena de Item/s
 		PowerUps_x.tscn				# Escena con Tokens powerUps (could be as an item)
 
-
-
+	
 # Carpeta de las entidades tipo caracter que comparten comportamientos
 CARPETA Entities():
 	CARPETA Player(Player_x):				
@@ -37,8 +36,7 @@ CARPETA Entities():
 		
 	Entity.tscn						# main scene of a generic Entity
 	Entity.gd						# It's generic script
-					
-						
+
 CARPETA Items():
 	GenericItem.tscn				# main scene of a generic item
 	GenericItem.gd					# script of the generic item
@@ -54,7 +52,7 @@ CARPETA Weapons():
 		x_weapon.tscn
 		x_weapon.gd
 		Sprite / AnimatedSprite
-		
+
 CARPETA Powers():
 	genericPower.tscn
 	genericWeapon.gd
@@ -78,7 +76,7 @@ CARPETA WORLDS():
 			SUBCARPETA TokenNextWorld(Token_nextWorld): # Area2D, token to nextWorld
 				TokenNextWorld.tscn
 				TokenNextWorld.gd:
-				
+
 CARPETA HUD():
 	SUBCARPETA Player_Interface():
 		
