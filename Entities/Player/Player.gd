@@ -27,10 +27,11 @@ func takeDamage(hitPoint):
 func _dead():
 	is_dead = true
 	motion = Vector2(0,0)
-	$Sprite.play("idle")
+	$Sprite.play("Run")
 	$entityCollision.disabled = true
 	queue_free()
 	get_tree().change_scene(Next_World)
+
 func _physics_process(delta):
 	
 	$Label.text = str($health.health)
@@ -87,9 +88,7 @@ func _physics_process(delta):
 		"""
 		if Input.is_action_just_pressed("takeDamage"):
 			var hit = 25
-			var showHealth
-			showHealth = $health._damage(hit)
-			print(showHealth)
+			takeDamage(hit)
 	
 	motion = move_and_slide(motion, UP)
 	
