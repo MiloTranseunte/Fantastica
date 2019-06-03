@@ -10,6 +10,10 @@ var hitPoint = 50
 
 func set_bullet_direction(dir):
 	direction = dir
+	
+func beforeVanish():
+	$Timer.set_wait_time(1.5)
+	$Timer.start()
 
 func _ready():
 	pass # Replace with function body.
@@ -28,11 +32,11 @@ func _physics_process(delta):
 	translate(velocity)
 
 
-# la sintáxis de call_deferred te salva del error: 
-#"can't change this state while flushing queries"
-# y hace funcionar mejor las colisiones
-
-
 func _on_Bullet_body_entered(body):
-		body.call_deferred("takeDamage", hitPoint)
+		body.call_deferred("takeDamage", hitPoint) # la sintáxis de call_deferred te salva del error: #"can't change this state while flushing queries" # y hace funcionar mejor las colisiones
 		queue_free()
+
+
+func _on_Timer_timeout():
+	print("bullet_queued")
+	queue_free()

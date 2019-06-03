@@ -51,6 +51,8 @@ func shootTrigered():
 		get_parent().add_child(bullet)
 		bullet.position = bullet_pos
 		
+		bullet.beforeVanish()
+		
 		$shootingDelay.start()
 	
 func _ready():

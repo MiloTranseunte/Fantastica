@@ -12,7 +12,9 @@ func set_bullet_direction(dir):
 func _ready():
 	pass # Replace with function body.
 
-
+func beforeVanish():
+	$Timer.set_wait_time(1.5)
+	$Timer.start()
 
 func _physics_process(delta):
 	velocity.x = SPEED * delta * direction
@@ -40,3 +42,8 @@ func _on_Bullet_enemy_body_entered(body):
 
 #	if "EvilClone" in body.name:
 #		body.dead()
+
+
+func _on_Timer_timeout():
+	print("enemy bullet queued")
+	queue_free()
