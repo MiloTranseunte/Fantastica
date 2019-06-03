@@ -78,7 +78,6 @@ func shoot(bullet, bullet_pos):
 		
 		can_shoot = false
 		$shootingDelay.start()
-		
 
 func _on_shootingDelay_timeout():
 	can_shoot = true

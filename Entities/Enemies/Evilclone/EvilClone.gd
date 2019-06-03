@@ -22,7 +22,7 @@ func dead():
 	$Sprite.play("idle")
 	$entityCollision.disabled = true
 	$areaDetection/detectionShape.disabled = true
-	$Timer.start()
+	$layingDeadTime.start()
 	
 	
 func shootTrigered():
@@ -92,8 +92,9 @@ func _physics_process(delta):
 #	pass
 
 
-func _on_Timer_timeout():
+func _on_layingDeadTime_timeout():
 	queue_free()
+
 
 func _on_shootingDelay_timeout():
 	can_shoot = true
