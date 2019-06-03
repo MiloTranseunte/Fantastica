@@ -18,16 +18,17 @@ var can_shoot = true
 var is_dead = false
 
 func takeDamage(hitPoint):
-	#$Sprite.Modulate(255,0,0)
-	var remained_health = $health._damage(hitPoint)
-	if remained_health <= 0:
-		_dead()
-		pass
+	if is_dead == false:
+		var remained_health = $health._damage(hitPoint)
+		if remained_health <= 0:
+			_dead()
+			pass
 		
 func _dead():
 	is_dead = true
 	motion = Vector2(0,0)
-	$Sprite.play("Run")
+	$Sprite.play("dead")
+	yield($Sprite, "animation_finished")
 	$entityCollision.disabled = true
 	queue_free()
 	get_tree().change_scene(Next_World)
