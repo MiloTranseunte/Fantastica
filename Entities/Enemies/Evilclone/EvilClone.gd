@@ -12,7 +12,7 @@ var motion = Vector2()
 var direction = 1
 
 # Survival variables
-var health = 25
+#var health = 200
 var is_dead = false
 
 # Shooting Variables
@@ -20,17 +20,23 @@ var can_shoot = true
 const BULLET = preload("res://Powers/enemyPowers/Fireball/enemyFireball.tscn")
 
 func takeDamage(hitPoint):
-	health = health - hitPoint
-	if health <= 0:
-		dead()
+	if is_dead == false:
+		var health = $health._damage(hitPoint)
+		if health <= 0:
+			dead()
 
 func dead():
 	is_dead = true
 	motion = Vector2(0,0) 
-	$Sprite.play("idle")
-	$entityCollision.disabled = true
+	$Sprite.play("dead")
 	$areaDetection/detectionShape.disabled = true
-	$Timer.start()
+	$touchingArea/CollisionShape2D.disabled = true
+	$entityCollision.disabled = true
+	yield($Sprite, "animation_finished")	
+	
+	
+	queue_free()
+	
 	
 func touchDamage():
 	pass
@@ -61,7 +67,7 @@ func _ready():
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	
-	$Label.text = str(health)
+	$Label.text = str($health._get_health())
 	motion.y += min(GRAVITY, MAX_SPEED_FALL) # Always falling
 	motion.x = lerp(motion.x, 0, .1)
 	
@@ -86,7 +92,7 @@ func _physics_process(delta):
 		if !is_on_floor():
 			motion.y = lerp(motion.y, MAX_SPEED_FALL, .01)
 			
-	motion = move_and_slide(motion, UP)
+		motion = move_and_slide(motion, UP)
 		
 	if is_on_wall():
 		direction *= -1
@@ -101,10 +107,6 @@ func _physics_process(delta):
 
 #func _on_Area2D_body_exited(body):
 #	pass
-
-
-func _on_Timer_timeout():
-	queue_free()
 
 func _on_shootingDelay_timeout():
 	can_shoot = true

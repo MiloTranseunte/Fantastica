@@ -569,4 +569,5 @@ position = Vector2( 3148.72, 966.624 )
 
 [node name="Spikes" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2622.14, 1290 )
+
 [connection signal="body_entered" from="Spikes" to="." method="_on_Spikes_body_entered"]

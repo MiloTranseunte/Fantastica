@@ -4,7 +4,7 @@ const UP = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_SPEED_FALL = 1000
 const ACCELERATION = 75
-const MAX_SPEED = 400 #220
+const MAX_SPEED = 220 #220
 const JUMP_HEIGHT = -550
 
 const BULLET = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")
@@ -27,9 +27,9 @@ func takeDamage(hitPoint):
 func _dead():
 	is_dead = true
 	motion = Vector2(0,0)
+	$entityCollision.disabled = true
 	$Sprite.play("dead")
 	yield($Sprite, "animation_finished")
-	$entityCollision.disabled = true
 	queue_free()
 	get_tree().change_scene(Next_World)
 
@@ -91,7 +91,7 @@ func _physics_process(delta):
 			var hit = 25
 			takeDamage(hit)
 	
-	motion = move_and_slide(motion, UP)
+		motion = move_and_slide(motion, UP)
 	
 func shoot(bullet, bullet_pos):
 	if can_shoot == true:
@@ -107,7 +107,6 @@ func shoot(bullet, bullet_pos):
 		$shootingDelay.start()
 		
 		bullet.beforeVanish()
-
 
 func _on_shootingDelay_timeout():
 	can_shoot = true

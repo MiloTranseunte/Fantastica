@@ -16,15 +16,20 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "dead",
-"speed": 3.0
+"name": "Idle",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ) ],
+"loop": true,
+"name": "dead",
+"speed": 3.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
@@ -35,11 +40,6 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 3.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -83,4 +83,5 @@ wait_time = 0.7
 
 [node name="health" type="Node" parent="."]
 script = ExtResource( 13 )
+
 [connection signal="timeout" from="shootingDelay" to="." method="_on_shootingDelay_timeout"]

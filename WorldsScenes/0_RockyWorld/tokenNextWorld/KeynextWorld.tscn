@@ -3,7 +3,6 @@
 [ext_resource path="res://WorldsScenes/0_RockyWorld/tokenNextWorld/KeynextWorld.gd" type="Script" id=1]
 [ext_resource path="res://WorldsScenes/0_RockyWorld/tokenNextWorld/icon.png" type="Texture" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
@@ -21,4 +20,5 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
 [connection signal="body_entered" from="." to="." method="_on_KeynextWorld_body_entered"]
