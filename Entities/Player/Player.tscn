@@ -8,10 +8,10 @@
 [ext_resource path="res://Entities/Player/PlayerSprites/Run3.png" type="Texture" id=6]
 [ext_resource path="res://Entities/Player/PlayerSprites/Run4.png" type="Texture" id=7]
 [ext_resource path="res://Entities/Player/PlayerSprites/Run7.png" type="Texture" id=8]
-[ext_resource path="res://Entities/Player/PlayerSprites/Jump3.png" type="Texture" id=9]
-[ext_resource path="res://Entities/Player/PlayerSprites/Jump4.png" type="Texture" id=10]
-[ext_resource path="res://Entities/Player/PlayerSprites/Jump0.png" type="Texture" id=11]
-[ext_resource path="res://Entities/Player/PlayerSprites/Jump1.png" type="Texture" id=12]
+[ext_resource path="res://Entities/Player/PlayerSprites/Jump0.png" type="Texture" id=9]
+[ext_resource path="res://Entities/Player/PlayerSprites/Jump1.png" type="Texture" id=10]
+[ext_resource path="res://Entities/Player/PlayerSprites/Jump3.png" type="Texture" id=11]
+[ext_resource path="res://Entities/Player/PlayerSprites/Jump4.png" type="Texture" id=12]
 [ext_resource path="res://Entities/Player/health.gd" type="Script" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -26,20 +26,20 @@ animations = [ {
 "name": "Run",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ) ],
 "loop": true,
 "name": "dead",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "Fall",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 3.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -69,6 +69,9 @@ editor_draw_drag_margin = true
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 42, 0 )
+
+[node name="ThrowingPos" type="Position2D" parent="."]
+position = Vector2( 31.2455, -29.0372 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -65.3689

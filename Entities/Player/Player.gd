@@ -8,7 +8,7 @@ const MAX_SPEED = 220 #220
 const JUMP_HEIGHT = -550
 
 const BULLET = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")
-
+const KNIFE = preload("res://Powers/playerPowers/ThrowingKnife/ThrowingKnife.tscn")
 export (String, FILE, "*.tscn") var Next_World
 
 var motion = Vector2()
@@ -38,7 +38,8 @@ func _physics_process(delta):
 	$Label.text = str($health.health)
 	
 	var bullet_pos = $Position2D.global_position #Vector2()
-	
+	var knife_pos = $ThrowingPos.global_position #Vector2()
+	var knife_rot = $ThrowingPos.global_rotation_degrees
 	motion.y += GRAVITY
 	
 	var air_friction = false
@@ -51,12 +52,16 @@ func _physics_process(delta):
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == -1:
 				$Position2D.position.x *= -1
+			if sign($ThrowingPos.position.x) == -1:
+				$ThrowingPos.position.x *= -1
 		elif Input.is_action_pressed("goLeft"):
 			motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
 			$Sprite.flip_h = true
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
+			if sign($ThrowingPos.position.x) == 1:
+				$ThrowingPos.position.x *= -1
 		else:
 			$Sprite.play("Idle")
 			air_friction = true
@@ -79,6 +84,11 @@ func _physics_process(delta):
 		if Input.is_action_pressed("shoot"):
 			var bullet = BULLET.instance()
 			shoot(bullet, bullet_pos)
+			
+		if Input.is_action_pressed("throw"):
+			var knife = KNIFE.instance()
+			throw(knife, knife_pos, knife_rot)
+			
 			
 			
 		if Input.is_action_just_pressed("reset_world"):
@@ -107,6 +117,22 @@ func shoot(bullet, bullet_pos):
 		$shootingDelay.start()
 		
 		bullet.beforeVanish()
+		
+func throw(knife, knife_pos, knife_rot):
+	if can_shoot == true:
+		if sign($ThrowingPos.position.x) == -1:
+			knife.set_knife_direction(-1)
+		else:
+			knife.set_knife_direction(1)
+		
+		get_parent().add_child(knife)
+		knife.position = knife_pos
+		knife.rotation_degrees = knife_rot
+		
+		can_shoot = false
+		$shootingDelay.start()
+		
+		knife.beforeVanish()
 
 func _on_shootingDelay_timeout():
 	can_shoot = true
