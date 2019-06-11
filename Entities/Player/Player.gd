@@ -35,15 +35,13 @@ func _dead():
 
 func _physics_process(delta):
 	
-	$Label.text = str($health.health)
-	
+	$Label.text = str($health.health)	
 	var bullet_pos = $Position2D.global_position #Vector2()
 	var knife_pos = $ThrowingPos.global_position #Vector2()
-	var knife_rot = $ThrowingPos.global_rotation_degrees
+	
 	motion.y += GRAVITY
 	
 	var air_friction = false
-	
 	
 	if is_dead == false:
 		if Input.is_action_pressed("goRight"):
@@ -87,7 +85,7 @@ func _physics_process(delta):
 			
 		if Input.is_action_pressed("throw"):
 			var knife = KNIFE.instance()
-			throw(knife, knife_pos, knife_rot)
+			throw(knife, knife_pos)
 			
 			
 			
@@ -118,16 +116,15 @@ func shoot(bullet, bullet_pos):
 		
 		bullet.beforeVanish()
 		
-func throw(knife, knife_pos, knife_rot):
+func throw(knife, knife_pos):
 	if can_shoot == true:
-		if sign($ThrowingPos.position.x) == -1:
+		if sign($Position2D.position.x) == -1:
 			knife.set_knife_direction(-1)
 		else:
 			knife.set_knife_direction(1)
-		
+
 		get_parent().add_child(knife)
 		knife.position = knife_pos
-		knife.rotation_degrees = knife_rot
 		
 		can_shoot = false
 		$shootingDelay.start()

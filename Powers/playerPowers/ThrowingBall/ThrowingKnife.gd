@@ -45,7 +45,7 @@ func _physics_process(delta):
 	#motion.y += directional_force.y * delta * _GRAVITY
 	#motion.y += delta * _GRAVITY
 	
-	move_and_slide(motion, UP)
+	move_and_collide(motion)
 	pass
 
 func _on_Timer_timeout():
