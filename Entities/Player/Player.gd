@@ -4,12 +4,13 @@ const UP = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_SPEED_FALL = 1000
 const ACCELERATION = 75
-const MAX_SPEED = 220 #220
 const JUMP_HEIGHT = -550
 
 const BULLET = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")
 const KNIFE = preload("res://Powers/playerPowers/ThrowingKnife/ThrowingKnife.tscn")
 export (String, FILE, "*.tscn") var Next_World
+
+export (int) var max_speed = 220 #220
 
 var motion = Vector2()
 
@@ -47,7 +48,7 @@ func _physics_process(delta):
 	
 	if is_dead == false:
 		if Input.is_action_pressed("goRight"):
-			motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
+			motion.x = min(motion.x + ACCELERATION, max_speed)
 			$Sprite.flip_h = false
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == -1:
@@ -55,7 +56,7 @@ func _physics_process(delta):
 			if sign($ThrowingPos.position.x) == -1:
 				$ThrowingPos.position.x *= -1
 		elif Input.is_action_pressed("goLeft"):
-			motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
+			motion.x = max(motion.x - ACCELERATION, -max_speed)
 			$Sprite.flip_h = true
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == 1:
@@ -76,7 +77,7 @@ func _physics_process(delta):
 				$Sprite.play("Jump")
 			else:
 				$Sprite.play("Fall")
-				motion.y = lerp(motion.y, MAX_SPEED_FALL, .01)
+				motion.y = lerp(motion.y, max_speed, .01)
 				
 			if air_friction == true:
 				motion.x = lerp(motion.x, 0, .2)
