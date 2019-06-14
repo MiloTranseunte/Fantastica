@@ -23,9 +23,10 @@ func takeDamage(hitPoint):
 	if is_dead == false:
 		var health = $health._damage(hitPoint)
 		if health <= 0:
-			dead()
+			_dead()
 
-func dead():
+
+func _dead():
 	is_dead = true
 	motion = Vector2(0,0) 
 	$Sprite.play("dead")
@@ -34,10 +35,9 @@ func dead():
 	$entityCollision.disabled = true
 	yield($Sprite, "animation_finished")	
 	
-	
 	queue_free()
-	
-	
+
+
 func touchDamage():
 	pass
 	
@@ -67,7 +67,7 @@ func _ready():
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	
-	$Label.text = str($health._get_health())
+	$Label.text = str($health.get_health())
 	motion.y += min(GRAVITY, MAX_SPEED_FALL) # Always falling
 	motion.x = lerp(motion.x, 0, .1)
 	

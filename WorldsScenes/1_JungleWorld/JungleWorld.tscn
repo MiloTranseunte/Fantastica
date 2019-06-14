@@ -504,7 +504,7 @@ extents = Vector2( 32, 300 )
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2320, 930 )
+position = Vector2( 260, 870 )
 Next_World = "res://WorldsScenes/1_JungleWorld/JungleWorld.tscn"
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -565,7 +565,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 51 )
 
 [node name="EvilClone" parent="." instance=ExtResource( 7 )]
-position = Vector2( 3148.72, 966.624 )
+position = Vector2( 2040, 1010 )
 
 [node name="Spikes" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2622.14, 1290 )

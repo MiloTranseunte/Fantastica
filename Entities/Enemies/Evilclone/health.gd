@@ -1,10 +1,11 @@
+# ENEMY HEALTH
 extends Node
 
-const HEALTH = 100
+var health = 100
 
 func _damage(hit):
-	var health = HEALTH - hit
+	health = health - hit
 	return health
 
-func _get_health():
-	return HEALTH
+func get_health():
+	return health

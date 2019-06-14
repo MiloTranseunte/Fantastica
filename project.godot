@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Fantastica-Game"
-run/main_scene="res://WorldsScenes/0_RockyWorld/RockyWorld.tscn"
+run/main_scene="res://WorldsScenes/1_JungleWorld/JungleWorld.tscn"
 config/icon="res://WorldsScenes/0_RockyWorld/tokenNextWorld/icon.png"
 
 [input]

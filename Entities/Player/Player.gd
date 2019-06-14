@@ -6,8 +6,7 @@ const MAX_SPEED_FALL = 1000
 const ACCELERATION = 75
 const JUMP_HEIGHT = -550
 
-const BULLET = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")
-const KNIFE = preload("res://Powers/playerPowers/ThrowingKnife/ThrowingKnife.tscn")
+const FIREBALL = preload("res://Powers/playerPowers/Fireball/Fireball.tscn")
 export (String, FILE, "*.tscn") var Next_World
 
 export (int) var max_speed = 220 #220
@@ -36,9 +35,8 @@ func _dead():
 
 func _physics_process(delta):
 	
-	$Label.text = str($health.health)	
-	var bullet_pos = $Position2D.global_position #Vector2()
-	var knife_pos = $ThrowingPos.global_position #Vector2()
+	$Label.text = str($health.get_health())
+	var fireball_pos = $Position2D.global_position #Vector2()
 	
 	motion.y += GRAVITY
 	
@@ -51,20 +49,16 @@ func _physics_process(delta):
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == -1:
 				$Position2D.position.x *= -1
-			if sign($ThrowingPos.position.x) == -1:
-				$ThrowingPos.position.x *= -1
 		elif Input.is_action_pressed("goLeft"):
 			motion.x = max(motion.x - ACCELERATION, -max_speed)
 			$Sprite.flip_h = true
 			$Sprite.play("Run")
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
-			if sign($ThrowingPos.position.x) == 1:
-				$ThrowingPos.position.x *= -1
 		else:
 			$Sprite.play("Idle")
 			air_friction = true
-		
+
 		if is_on_floor():
 			if Input.is_action_pressed("Jump"):
 				motion.y = JUMP_HEIGHT
@@ -76,48 +70,44 @@ func _physics_process(delta):
 			else:
 				$Sprite.play("Fall")
 				motion.y = lerp(motion.y, max_speed, .01)
-				
+
 			if air_friction == true:
 				motion.x = lerp(motion.x, 0, .2)
-				
+
 		if Input.is_action_pressed("shoot"):
-			var bullet = BULLET.instance()
-			shoot(bullet, bullet_pos)
-			
-		if Input.is_action_pressed("throw"):
-			var knife = KNIFE.instance()
-			throw(knife, knife_pos)
-			
-			
-			
+			var fireball = FIREBALL.instance()
+			_shoot(fireball, fireball_pos)
+
+
+#		 Just for experimental use only
+
 		if Input.is_action_just_pressed("reset_world"):
 			get_tree().change_scene(Next_World)
-		
-		"""
-		Just for experimental use only
-		"""
+
 		if Input.is_action_just_pressed("takeDamage"):
 			var hit = 25
 			takeDamage(hit)
-	
+
 		motion = move_and_slide(motion, UP)
-	
-func shoot(bullet, bullet_pos):
+
+
+func _shoot(fireball, fireball_pos):
 	if can_shoot == true:
 		if sign($Position2D.position.x) == -1:
-			bullet.set_bullet_direction(-1)
+			fireball.set_bullet_direction(-1)
 		else:
-			bullet.set_bullet_direction(1)
-	
-		get_parent().add_child(bullet)
-		bullet.position = bullet_pos
+			fireball.set_bullet_direction(1)
+		
+		get_parent().add_child(fireball)
+		fireball.position = fireball_pos
 		
 		can_shoot = false
 		$shootingDelay.start()
 		
-		bullet.beforeVanish()
-		
-func throw(knife, knife_pos):
+		fireball.beforeVanish()
+
+
+func _throw(knife, knife_pos):
 	if can_shoot == true:
 		if sign($Position2D.position.x) == -1:
 			knife.set_knife_direction(-1)
@@ -131,6 +121,7 @@ func throw(knife, knife_pos):
 		$shootingDelay.start()
 		
 		knife.beforeVanish()
+
 
 func _on_shootingDelay_timeout():
 	can_shoot = true
