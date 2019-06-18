@@ -83,7 +83,6 @@ shape = SubResource( 2 )
 
 [node name="areaDetection" type="Area2D" parent="."]
 editor/display_folded = true
-visible = false
 script = ExtResource( 28 )
 
 [node name="detectionShape" type="CollisionShape2D" parent="areaDetection"]
@@ -99,5 +98,7 @@ margin_bottom = -43.0
 [node name="distanceGround" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 150 )
-collision_mask = 2
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
 

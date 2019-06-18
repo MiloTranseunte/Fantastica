@@ -10,7 +10,7 @@ var velocity = Vector2.ZERO
 # to take into account: get_viewport().get_mouse_position()
 
 func beforeVanish():
-	$Timer.set_wait_time(1)
+	$Timer.set_wait_time(4)
 	$Timer.start()
 
 func _physics_process(delta):
@@ -24,8 +24,8 @@ func _physics_process(delta):
 	pass
 
 
-func launch(direction):
-	velocity = THROW_VELOCITY * Vector2(direction, -1) # segundo término, cambia entre (1) y (-1)
+func launch(direction, _shoot_direction_axis):
+	velocity = THROW_VELOCITY * Vector2(direction, _shoot_direction_axis) # segundo término, cambia entre (1) y (-1)
 
 
 func _on_impact(normal : Vector2):
