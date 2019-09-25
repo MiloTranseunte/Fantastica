@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://WorldsScenes/1_JungleWorld/JungleWorld.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://WorldsScenes/0_RockyWorld/tokenNextWorld/icon.png" type="Texture" id=6]
 [ext_resource path="res://Entities/Enemies/Evilclone/EvilClone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/Enviromental/Spikes/Spikes.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Entities/Enemies/Launcher/Launcher.tscn" type="PackedScene" id=9]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -570,4 +571,6 @@ position = Vector2( 2040, 1010 )
 [node name="Spikes" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2622.14, 1290 )
 
+[node name="Launcher" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1197.95, 1008 )
 [connection signal="body_entered" from="Spikes" to="." method="_on_Spikes_body_entered"]

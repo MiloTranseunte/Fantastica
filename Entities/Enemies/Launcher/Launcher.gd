@@ -9,7 +9,7 @@ export (float) var angle = 45
 export (float) var shoot_force = 50
 
 export (float) var gravity = 100
-export (float) var velocity = 20
+export (float) var velocity = 50
 export (Vector2) var motion = Vector2()
 
 # Survival variables
@@ -31,38 +31,45 @@ func takeDamage(hitPoint):
 func _dead():
 	is_dead = true
 	motion = Vector2(0,0) 
-	$Sprite.play("idle")
+	$animation.play("dead")
+	yield($animation, "animation_finished")
 	$entityCollision.disabled = true
-	$areaDetection/detectionShape.disabled = true
+	#$areaDetection/detectionShape.disabled = true
 	# $Timer.start()
+	queue_free()
 	pass
 	
 func _physics_process(delta):
-	motion.x = velocity * facing
-
-	var force_ball_pos = 0 # $pos_left_cannon.global_position
-
-	var force_ball = FORCE_BALL
+	$Label.text = str($health.get_health())
 	
-	if Input.is_action_just_pressed("throw"): # SPACEBAR
+	if is_dead == false:
+		
+		$animation.play("idle")
+		motion.x = velocity * facing
 	
-		var _shoot_direction = -1 # negative left
-		force_ball_pos = $pos_left_cannon.global_position
-		force_ball = FORCE_BALL.instance()
-		get_parent().add_child(force_ball)
-		force_ball.position = force_ball_pos
-		force_ball.launch(_shoot_direction)
+		var force_ball_pos = 0 # $pos_left_cannon.global_position
+	
+		var force_ball = FORCE_BALL
 		
-		force_ball.beforeVanish()
+		if Input.is_action_just_pressed("throw"): # SPACEBAR
 		
-		_shoot_direction *= -1 # EQUALS TO +1 positive right
-		force_ball_pos = $pos_right_cannon.global_position
-		force_ball = FORCE_BALL.instance()
-		get_parent().add_child(force_ball)
-		force_ball.position = force_ball_pos
-		force_ball.launch(_shoot_direction)
-		
-		force_ball.beforeVanish()
+			var _shoot_direction = -1 # negative left
+			force_ball_pos = $pos_left_cannon.global_position
+			force_ball = FORCE_BALL.instance()
+			get_parent().add_child(force_ball)
+			force_ball.position = force_ball_pos
+			force_ball.launch(_shoot_direction)
+			
+			force_ball.beforeVanish()
+			
+			_shoot_direction *= -1 # EQUALS TO +1 positive right
+			force_ball_pos = $pos_right_cannon.global_position
+			force_ball = FORCE_BALL.instance()
+			get_parent().add_child(force_ball)
+			force_ball.position = force_ball_pos
+			force_ball.launch(_shoot_direction)
+			
+			force_ball.beforeVanish()
 		
 	motion = move_and_slide(motion, Vector2(0, -1))
 		

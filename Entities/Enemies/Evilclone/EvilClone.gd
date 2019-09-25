@@ -33,7 +33,7 @@ func _dead():
 	$areaDetection/detectionShape.disabled = true
 	$touchingArea/CollisionShape2D.disabled = true
 	$entityCollision.disabled = true
-	yield($Sprite, "animation_finished")	
+	yield($Sprite, "animation_finished")
 	
 	queue_free()
 

@@ -1,4 +1,4 @@
-# ENEMY HEALTH
+# EvilClone ENEMY HEALTH
 extends Node
 
 var health = 100

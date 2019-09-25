@@ -89,5 +89,4 @@ script = ExtResource( 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="touchingArea"]
 position = Vector2( 0, 4 )
 shape = SubResource( 4 )
-
 [connection signal="timeout" from="shootingDelay" to="." method="_on_shootingDelay_timeout"]
