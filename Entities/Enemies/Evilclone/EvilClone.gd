@@ -37,9 +37,9 @@ func _dead():
 	
 	queue_free()
 
-
-func touchDamage():
-	pass
+# TODO: DELETE
+#func touchDamage():
+#	pass
 	
 func shootTrigered():
 	if is_dead == false && can_shoot == true:
@@ -96,17 +96,6 @@ func _physics_process(delta):
 		
 	if is_on_wall():
 		direction *= -1
-
-#func _on_Area2D_body_entered(body):
-#	if "Player" in body.name:
-#		print(body.name + " this")
-#		$Timer.start()
-#	else:
-#		$Timer.stop()
-#		print("StopShooting")
-
-#func _on_Area2D_body_exited(body):
-#	pass
 
 func _on_shootingDelay_timeout():
 	can_shoot = true

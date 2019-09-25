@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Entities/Enemies/Launcher/Launcher.gd" type="Script" id=1]
@@ -17,50 +18,130 @@
 [ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_8.png" type="Texture" id=15]
 [ext_resource path="res://Entities/Enemies/Launcher/launcher_health.gd" type="Script" id=16]
 [ext_resource path="res://Entities/Enemies/Launcher/health.gd" type="Script" id=17]
+=======
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Entities/Enemies/Launcher/Launcher.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Enemies/Launcher/launcher_health.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_00.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_01.png" type="Texture" id=4]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_02.png" type="Texture" id=5]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_03.png" type="Texture" id=6]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_04.png" type="Texture" id=7]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_05.png" type="Texture" id=8]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_06.png" type="Texture" id=9]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_07.png" type="Texture" id=10]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_08.png" type="Texture" id=11]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/idle/idle_09.png" type="Texture" id=12]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_00.png" type="Texture" id=13]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_01.png" type="Texture" id=14]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_02.png" type="Texture" id=15]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_03.png" type="Texture" id=16]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_04.png" type="Texture" id=17]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_05.png" type="Texture" id=18]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_06.png" type="Texture" id=19]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_07.png" type="Texture" id=20]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_08.png" type="Texture" id=21]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_09.png" type="Texture" id=22]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_10.png" type="Texture" id=23]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_11.png" type="Texture" id=24]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_12.png" type="Texture" id=25]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_13.png" type="Texture" id=26]
+[ext_resource path="res://Entities/Enemies/Launcher/Animation/attack/attack_14.png" type="Texture" id=27]
+[ext_resource path="res://Entities/Enemies/Launcher/areaDetection.gd" type="Script" id=28]
+>>>>>>> fcb47f9cde2445c7d43a8ac6e8ae4f068631cdcc
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "idle",
-"speed": 2.0
+"speed": 5.0
 }, {
+<<<<<<< HEAD
 "frames": [ ExtResource( 6 ), null, ExtResource( 6 ), null, ExtResource( 6 ), null ],
 "loop": true,
 "name": "dead",
 "speed": 2.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+=======
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+>>>>>>> fcb47f9cde2445c7d43a8ac6e8ae4f068631cdcc
 "loop": true,
 "name": "attack",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 3 ), null, ExtResource( 3 ), null, ExtResource( 3 ), null, ExtResource( 3 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 20 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 26.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 140.0
+height = 250.0
 
 [node name="Launcher" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )
 
+[node name="launcher_health" type="Node" parent="."]
+script = ExtResource( 2 )
+
 [node name="animation" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
+<<<<<<< HEAD
 animation = "dead"
 frame = 3
+=======
+animation = "attack"
+frame = 4
+
+[node name="shootingDelay" type="Timer" parent="."]
+
+[node name="pos_right_cannon" type="Position2D" parent="."]
+position = Vector2( 40, 2 )
+
+[node name="pos_left_cannon" type="Position2D" parent="."]
+position = Vector2( -40, 2 )
+>>>>>>> fcb47f9cde2445c7d43a8ac6e8ae4f068631cdcc
 
 [node name="entityCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource( 2 )
 
+<<<<<<< HEAD
 [node name="launcher_health" type="Node" parent="."]
 script = ExtResource( 16 )
+=======
+[node name="areaDetection" type="Area2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 28 )
 
-[node name="pos_cannon_right" type="Position2D" parent="."]
-position = Vector2( 19, 2 )
+[node name="detectionShape" type="CollisionShape2D" parent="areaDetection"]
+rotation = 1.5708
+shape = SubResource( 3 )
+>>>>>>> fcb47f9cde2445c7d43a8ac6e8ae4f068631cdcc
 
-[node name="pos_cannon_left" type="Position2D" parent="."]
-position = Vector2( -19, 2 )
+[node name="Label" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -60.0
+margin_right = 20.0
+margin_bottom = -43.0
+
+[node name="distanceGround" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 150 )
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Label" type="Label" parent="."]
 margin_left = -20.0
